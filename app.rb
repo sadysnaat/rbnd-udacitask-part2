@@ -32,6 +32,7 @@ new_list.add("event", "Life happens")
 new_list.add("link", "https://www.udacity.com/", site_name: "Udacity Homepage")
 new_list.add("link", "http://ruby-doc.org")
 
+new_list.all
 # SHOULD RETURN ERROR MESSAGES
 # ----------------------------
 #new_list.add("image", "http://ruby-doc.org") # Throws InvalidItemType error
@@ -45,3 +46,15 @@ new_list.add("link", "http://ruby-doc.org")
 # DEMO FILTER BY ITEM TYPE
 # ------------------------
 # new_list.filter("event")
+
+
+
+
+
+new_list2 = UdaciList.new # Should create a list called "Untitled List"
+new_list2.add("todo", "Buy more dog food", due: "in 5 weeks", priority: "medium")
+new_list2.add("todo", "Go dancing", due: "in 2 hours")
+new_list2.add("todo", "Buy groceries", priority: "high")
+
+
+new_list2.all
