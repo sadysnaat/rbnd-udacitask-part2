@@ -26,19 +26,18 @@ class UdaciList
     @items.push LinkItem.new(description, options) if type == "link"
   end
   def delete(index)
-    print @items.length
     if index > @items.length
       raise UdaciListErrors::IndexExceedsListSize, "Item #{index - 1} not in the list"
     end
     @items.delete_at(index - 1)
   end
   def all
-    puts "-" * @title.length
-    puts @title
-    puts "-" * @title.length
+    rows = []
     @items.each_with_index do |item, position|
-      puts "#{position + 1}) #{item.details}"
+      rows << [position+1] + item.details
     end
+    table = Terminal::Table.new :title => @title, :headings => ['No','Item', 'Info'], :rows => rows
+    puts table
   end
   def self.untitled_lists
     @@untitled_lists
