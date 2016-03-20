@@ -11,7 +11,7 @@ class UdaciList
       #This is done so that two untitled lists don't share same name
       @title = "Untitled List"
       if @@untitled_lists > 0
-        @title += " #{@@untitled_lists}"
+        @title += " #{@@untitled_lists + 1}"
       end
       @@untitled_lists += 1
     end
@@ -29,7 +29,7 @@ class UdaciList
   def delete(*indices)
     indices.each do |index|
       if index > @items.length
-        raise UdaciListErrors::IndexExceedsListSize, "Item #{index - 1} not in the list"
+        raise UdaciListErrors::IndexExceedsListSize, "Item #{index} not in the list"
       end
       @items.delete_at(index - 1)
     end
@@ -48,9 +48,6 @@ class UdaciList
       raise UdaciListErrors::ItemNotFound, "No item of type #{list_type} found."
     end
     print_list(result, "#{@title} - #{list_type} only")
-  end
-  def self.untitled_lists
-    @@untitled_lists
   end
   def item_at_index(index)
     return @items.at(index - 1)

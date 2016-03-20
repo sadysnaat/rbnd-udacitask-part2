@@ -1,13 +1,44 @@
 # What you added to Udacitask 2.0
 # -------------------------------------------------------
 1. What is the gem of your choice and how did you use it?
+  1) terminal-table for printing udacilist in nice tabular format
+  2) nokogiri and open-uri for fetching title for UdaciList Link item from web when absent
+  3) ice_cube for adding recurrence to event and todo items
+  4) icalendar for exporting event and todo items to .ics file
 2. Describe the 2 features you added to the project.
-  a) Feature 1...
-  b) Feature 2...
+  a) Feature 1 Allow deletion of multiple items
+  b) Feature 2 Change the priority levels of items
+  c) Feature 3 Ability to add recurrence to event and todo items
+  d) Feature 4 Ability to export event and todo items to .ics files
+  e) Feature 5 To select item_at_index from UdaciList object
+  f) Feature 6 To fetch title for UdaciList link item when title is absent
+  g) Feature 7 Print UdaciList in nice tabular format
+  h) Feature 8 Avoid name collision for Untitled Lists.
+                 Untitled Lists are named as
+                 1) Untitled List
+                 2) Untitled List 2
+                 3) Untitled List 3
 
 # REFLECTIONS
 # -------------------------------------------------------
 1. How long did you spend working on this project?
+Ans: around 1 week
 2. What was the most rewarding challenge you conquered?
+Ans: Ability to export event and todo items to .ics files.
+      I searched a lot. And skimmed through RFC 5545.
+      Learnt that iCalendar format is not related to apple :).
 3. What two additional features did you build? Why?
+Ans:
+    a) Feature 1 Allow deletion of multiple items : in suggestions
+    b) Feature 2 Change the priority levels of items : in suggestions
+    c) Feature 3 Ability to add recurrence to event and todo items : really wanted to export event and todo items to icalendar files
+    d) Feature 4 Ability to export event and todo items to .ics files : really wanted to export event and todo items to icalendar files
+    e) Feature 5 To select item_at_index from UdaciList object : necessary feature
+    f) Feature 6 To fetch title for UdaciList link item when title is absent : wanted to add Pockets like functionality
+    g) Feature 7 Print UdaciList in nice tabular format : was resistant to it initially but when I saw the example in github page, went ahead with it.
+    h) Feature 8 Avoid name collision for Untitled Lists : Most application do it, wanted to see how I can implement it
 4. Where do you still have room to grow?
+Ans: I need to read a little more about modules.
+      I looked at code https://github.com/seejohnrun/ice_cube and didn't get why they have declared module IceCube multiple
+      times. https://github.com/seejohnrun/ice_cube/tree/master/lib/ice_cube/parsers here every ruby file contains IceCube module
+      again and again. 

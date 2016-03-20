@@ -8,4 +8,6 @@ module UdaciListErrors
   end
   class ItemNotFound < StandardError
   end
+  class InvalidICalendarObject < StandardError
+  end
 end
