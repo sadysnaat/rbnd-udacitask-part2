@@ -8,6 +8,7 @@ class UdaciList
     if options[:title]
       @title = options[:title]
     else
+      #This is done so that two untitled lists don't share same name
       @title = "Untitled List"
       if @@untitled_lists > 0
         @title += " #{@@untitled_lists}"
@@ -32,14 +33,31 @@ class UdaciList
     @items.delete_at(index - 1)
   end
   def all
-    rows = []
-    @items.each_with_index do |item, position|
-      rows << [position+1] + item.details
+    print_list(@items, @title)
+  end
+  def filter(list_type)
+    result = []
+    @items.each do |item|
+      if item.class.to_s.sub('Item','').downcase == list_type
+        result << item
+      end
     end
-    table = Terminal::Table.new :title => @title, :headings => ['No','Item', 'Info'], :rows => rows
-    puts table
+    if result.length == 0
+      raise UdaciListErrors::ItemNotFound, "No item of type #{list_type} found."
+    end
+    print_list(result, "#{@title} - #{list_type} only")
   end
   def self.untitled_lists
     @@untitled_lists
+  end
+
+  private
+  def print_list(items, title)
+    rows = []
+    items.each_with_index do |item, position|
+      rows << [position+1,item.class.to_s.sub('Item','')] + item.details
+    end
+    table = Terminal::Table.new :title => title, :headings => ['No','Type','Item', 'Info'], :rows => rows
+    puts table
   end
 end
