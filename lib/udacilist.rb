@@ -26,11 +26,13 @@ class UdaciList
     @items.push EventItem.new(description, options) if type == "event"
     @items.push LinkItem.new(description, options) if type == "link"
   end
-  def delete(index)
-    if index > @items.length
-      raise UdaciListErrors::IndexExceedsListSize, "Item #{index - 1} not in the list"
+  def delete(*indices)
+    indices.each do |index|
+      if index > @items.length
+        raise UdaciListErrors::IndexExceedsListSize, "Item #{index - 1} not in the list"
+      end
+      @items.delete_at(index - 1)
     end
-    @items.delete_at(index - 1)
   end
   def all
     print_list(@items, @title)
@@ -49,6 +51,9 @@ class UdaciList
   end
   def self.untitled_lists
     @@untitled_lists
+  end
+  def item_at_index(index)
+    return @items.at(index - 1)
   end
 
   private

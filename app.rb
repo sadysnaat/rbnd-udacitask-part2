@@ -59,5 +59,6 @@ new_list2.add("todo", "Buy more dog food", due: "in 5 weeks", priority: "medium"
 new_list2.add("todo", "Go dancing", due: "in 2 hours")
 new_list2.add("todo", "Buy groceries", priority: "high")
 
+new_list2.item_at_index(3).change_priority("low")
 
 new_list2.all
