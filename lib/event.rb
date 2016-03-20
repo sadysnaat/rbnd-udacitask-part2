@@ -30,11 +30,11 @@ class EventItem
       cal_file = File.open("#{list_title} #{@description}.ics",'w+')
       cal_file.write(cal.to_ical)
     elsif @start_date
-      raise UdaciListErrors::InvalidICalendarObject, "end date is required for valid iCalendar Object"
+      raise UdaciListErrors::InvalidICalendarObject, "end date is required for valid event iCalendar Object"
     elsif @end_date
-      raise UdaciListErrors::InvalidICalendarObject, "start date is required for valid iCalendar Object"
+      raise UdaciListErrors::InvalidICalendarObject, "start date is required for valid event iCalendar Object"
     else
-      raise UdaciListErrors::InvalidICalendarObject, "start date and end date is required for valid iCalendar Object"
+      raise UdaciListErrors::InvalidICalendarObject, "start date and end date is required for valid event iCalendar Object"
     end
   end
   def details

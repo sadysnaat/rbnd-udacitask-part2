@@ -30,7 +30,7 @@ class TodoItem
       cal_file = File.open("#{list_title} #{@description}.ics",'w+')
       cal_file.write(cal.to_ical)
     else
-      raise UdaciListErrors::InvalidICalendarObject, "due date/time is required for valid iCalendar Object"
+      raise UdaciListErrors::InvalidICalendarObject, "due date/time is required for valid todo iCalendar Object"
     end
   end
 
