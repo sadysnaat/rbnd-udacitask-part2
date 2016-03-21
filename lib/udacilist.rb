@@ -1,8 +1,12 @@
+require_relative "./todo"
+require_relative "./event"
+require_relative "./link"
+
 class UdaciList
   attr_reader :title, :items
 
   @@untitled_lists = 0
-  @@valid_types = ["todo","event","link"]
+  @@valid_types = {todo: TodoItem, event: EventItem, link: LinkItem}
 
   def initialize(options={})
     if options[:title]
@@ -19,12 +23,11 @@ class UdaciList
   end
   def add(type, description, options={})
     type = type.downcase
-    if !@@valid_types.include? type
+    if @@valid_types.include? type.to_sym
+      @items.push @@valid_types[type.to_sym].new(description, options)
+    else
       raise UdaciListErrors::InvalidItemType, "#{type} is not a valid Udacilist Item"
     end
-    @items.push TodoItem.new(description, options) if type == "todo"
-    @items.push EventItem.new(description, options) if type == "event"
-    @items.push LinkItem.new(description, options) if type == "link"
   end
   def delete(*indices)
     # We need to do this otherwise if some smaller index gets deleted first
@@ -46,7 +49,7 @@ class UdaciList
   def filter(list_type)
     result = []
     @items.each do |item|
-      if item.class.to_s.sub('Item','').downcase == list_type
+      if item.class == @@valid_types[list_type.downcase.to_sym]
         result << item
       end
     end
