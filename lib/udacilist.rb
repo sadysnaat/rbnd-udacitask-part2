@@ -27,6 +27,12 @@ class UdaciList
     @items.push LinkItem.new(description, options) if type == "link"
   end
   def delete(*indices)
+    # We need to do this otherwise if some smaller index gets deleted first
+    # all other elements are shifted
+    # e.g.
+    # [1,2,3,4,5,6] delete(3,5) if item 3 is deleted first
+    # [1,2,4,5,6] 6 is now the 5th element which was not in the original array
+    indices = indices.sort.reverse
     indices.each do |index|
       if index > @items.length
         raise UdaciListErrors::IndexExceedsListSize, "Item #{index} not in the list"
